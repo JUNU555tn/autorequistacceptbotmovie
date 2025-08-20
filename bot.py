@@ -14,13 +14,6 @@ app = Client(
     bot_token=cfg.BOT_TOKEN
 )
 
-# List of image URLs
-images = [    
-    'https://storage.teleservices.io/Teleservice_9cecc9a95dba.jpg',
-    'https://storage.teleservices.io/Teleservice_bb48095f81f5.jpg',
-    'https://storage.teleservices.io/Teleservice_16705d191b64.jpg'
-]
-
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Main process ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 @app.on_chat_join_request(filters.group | filters.channel & ~filters.private)
@@ -30,12 +23,11 @@ async def approve(_, m: Message):
     try:
         add_group(m.chat.id)
         await app.approve_chat_join_request(op.id, kk.id)
-        img = random.choice(images)  # Choose a random image
-        await app.send_photo(
+        # Send text-only approval message instead of image
+        await app.send_message(
             kk.id,  # Send to the user who requested to join
-            img,  # The chosen image URL
-            caption="**Hello {}  your request has been approved ✔️ \n\nClick /start \n\n©️@JNKBACKUP @JNK_BOTS**".format(
-                m.from_user.mention
+            "**Hello {}! Your request to join {} has been approved ✔️ \n\nClick /start \n\n©️@JNKBACKUP @JNK_BOTS**".format(
+                m.from_user.mention, m.chat.title
             )
         )
         add_user(kk.id)
@@ -178,4 +170,4 @@ async def fcast(_, m: Message):
 
 
 if __name__ == "__main__":
-    app.run()  # This should only be here if you're running locally
+    app.run()
