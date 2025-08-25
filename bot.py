@@ -26,7 +26,7 @@ async def approve(_, m: Message):
         # Send text-only approval message instead of image
         await app.send_message(
             kk.id,  # Send to the user who requested to join
-            "**Hello {}! Your request to join {} has been approved ✔️ \n\nClick /start \n\n©️@JNKBACKUP @JNK_BOTS**".format(
+            "**Hello {}! Your request to join {} has been approved ✔️ \n\nClick /start \n\n©️@JNK_BACKUP @JNK_BOTZ**".format(
                 m.from_user.mention, m.chat.title
             )
         )
@@ -44,18 +44,18 @@ async def op(_, m :Message):
         await app.get_chat_member(cfg.CHID, m.from_user.id) 
         if m.chat.type == enums.ChatType.PRIVATE:    
             add_user(m.from_user.id)
-            await m.reply_text("**<strong>I'm an auto-approve [Admin Join Requests]({}) Bot. I can approve users in Groups/Channels. Add me to your chat and promote me to admin with add members permission. Join here for\n\nMAIN CHANNEL: @JNKBACKUP\n🎞 BOT UPDATE CHANNEL: @JNK_BOTS</strong>**",disable_web_page_preview=False)
+            await m.reply_text("**<strong>I'm an auto-approve [Admin Join Requests]({}) Bot. I can approve users in Groups/Channels. Add me to your chat and promote me to admin with add members permission. Join here for\n\nMAIN CHANNEL: @JNK_BACKUP\n🎞 BOT UPDATE CHANNEL: @JNK_BOTZ</strong>**",disable_web_page_preview=False)
             
         elif m.chat.type == enums.ChatType.GROUP or enums.ChatType.SUPERGROUP:
             keyboar = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("🍿BACKUP CHANNEL🍿", url="http://t.me/JNKBACKUP")
+                        InlineKeyboardButton("🍿BACKUP CHANNEL🍿", url="http://t.me/JNK_BACKUP")
                     ]
                 ]
             )
             add_group(m.chat.id)
-            await m.reply_text("** Hello start me private for more details @JNKBACKUP**")
+            await m.reply_text("** Hello start me private for more details @JNK_BACKUP**")
         print(m.from_user.first_name +" Is started Your Bot!")
 
     except UserNotParticipant:
@@ -66,7 +66,7 @@ async def op(_, m :Message):
                 ]
             ]
         )
-        await m.reply_text("**<strong>Hello {}  its good to see u again\n join below all channel\n\n@JNK_BOTS\n©@JNKBACKUP</strong>**".format(cfg.FSUB), reply_markup=key)
+        await m.reply_text("**<strong>Hello {}  its good to see u again\n join below all channel\n\n@JNK_BOTZ\n©@JNK_BACKUP</strong>**".format(cfg.FSUB), reply_markup=key)
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ callback ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -76,7 +76,7 @@ async def chk(_, cb : CallbackQuery):
         await app.get_chat_member(cfg.CHID, cb.from_user.id)
         if cb.message.chat.type == enums.ChatType.PRIVATE:            
             add_user(cb.from_user.id)
-            await cb.message.edit("**<strong>I'm an auto approve [Admin Join Requests]({}) Bot.I can approve users in Groups/Channels.Add me to your chat and promote me to admin with add members permission join here for\n\nMAIN UPDATE CHANNEL :- @JNKBACKUP\nBOT UPDATE CHANNEL :- @JNK_BOTS</strong>**")
+            await cb.message.edit("**<strong>I'm an auto approve [Admin Join Requests]({}) Bot.I can approve users in Groups/Channels.Add me to your chat and promote me to admin with add members permission join here for\n\nMAIN UPDATE CHANNEL :- @JNK_BACKUP\nBOT UPDATE CHANNEL :- @JNK_BOTZ</strong>**")
         print(cb.from_user.first_name +" Is started Your Bot!")
     except UserNotParticipant:
         await cb.answer("🙅‍♂️ You are not joined to channel join and try again. 🙅‍♂️")
